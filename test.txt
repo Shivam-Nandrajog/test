@@ -1,0 +1,1347 @@
+Practical No 1
+
+Write a program to perform tokenization over word and sentence on English and Hindi Text.
+
+
+!pip install nltk
+
+Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/ Requirement already satisfied: nltk in /usr/local/lib/python3.8/dist-packages (3.7) Requirement already satisfied: regex>=2021.8.3 in /usr/local/lib/python3.8/dist-pack Requirement already satisfied: tqdm in /usr/local/lib/python3.8/dist-packages (from Requirement already satisfied: click in /usr/local/lib/python3.8/dist-packages (from Requirement already satisfied: joblib in /usr/local/lib/python3.8/dist-packages (fro
+
+
+import nltk
+
+
+nltk.download('all')
+[nltk_data]	|	Unzipping corpora/state_union.zip.
+[nltk_data]	| Downloading package stopwords to /root/nltk_data... [nltk_data]	|	Unzipping corpora/stopwords.zip.
+[nltk_data]	| Downloading package subjectivity to [nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Unzipping corpora/subjectivity.zip.
+[nltk_data]	| Downloading package swadesh to /root/nltk_data... [nltk_data]	|	Unzipping corpora/swadesh.zip.
+[nltk_data]	| Downloading package switchboard to /root/nltk_data... [nltk_data]	|	Unzipping corpora/switchboard.zip.
+[nltk_data]	| Downloading package tagsets to /root/nltk_data...
+[nltk_data]	|	Unzipping help/tagsets.zip.
+[nltk_data]	| Downloading package timit to /root/nltk_data... [nltk_data]	|	Unzipping corpora/timit.zip.
+[nltk_data]	| Downloading package toolbox to /root/nltk_data... [nltk_data]	|	Unzipping corpora/toolbox.zip.
+[nltk_data]	| Downloading package treebank to /root/nltk_data...
+[nltk_data]	|	Unzipping corpora/treebank.zip.
+[nltk_data]	| Downloading package twitter_samples to [nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Unzipping corpora/twitter_samples.zip.
+[nltk_data]	| Downloading package udhr to /root/nltk_data... [nltk_data]	|	Unzipping corpora/udhr.zip.
+[nltk_data]	| Downloading package udhr2 to /root/nltk_data... [nltk_data]	|	Unzipping corpora/udhr2.zip.
+[nltk_data]	| Downloading package unicode_samples to [nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Unzipping corpora/unicode_samples.zip.
+[nltk_data]	| Downloading package universal_tagset to [nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Unzipping taggers/universal_tagset.zip.
+[nltk_data]	| Downloading package universal_treebanks_v20 to [nltk_data]	|	/root/nltk_data...
+[nltk_data]	| Downloading package vader_lexicon to [nltk_data]	|	/root/nltk_data...
+[nltk_data]	| Downloading package verbnet to /root/nltk_data...
+ 
+[nltk_data]	|	Unzipping corpora/verbnet.zip.
+[nltk_data]	| Downloading package verbnet3 to /root/nltk_data... [nltk_data]	|	Unzipping corpora/verbnet3.zip.
+[nltk_data]	| Downloading package webtext to /root/nltk_data...
+[nltk_data]	|	Unzipping corpora/webtext.zip.
+[nltk_data]	| Downloading package wmt15_eval to /root/nltk_data... [nltk_data]	|	Unzipping models/wmt15_eval.zip.
+[nltk_data]	| Downloading package word2vec_sample to [nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Unzipping models/word2vec_sample.zip.
+[nltk_data]	| Downloading package wordnet to /root/nltk_data...
+[nltk_data]	| Downloading package wordnet2021 to /root/nltk_data... [nltk_data]	| Downloading package wordnet31 to /root/nltk_data...
+[nltk_data]	| Downloading package wordnet_ic to /root/nltk_data... [nltk_data]	|	Unzipping corpora/wordnet_ic.zip.
+[nltk_data]	| Downloading package words to /root/nltk_data...
+[nltk_data]	|	Unzipping corpora/words.zip.
+[nltk_data]	| Downloading package ycoe to /root/nltk_data... [nltk_data]	|	Unzipping corpora/ycoe.zip.
+[nltk_data]	|
+[nltk_data] Done downloading collection all True
+
+
+#Tokenization
+#Import the library
+from nltk.tokenize import sent_tokenize from nltk.tokenize import word_tokenize
+
+
+#Importing data
+
+dataset=""" Hello Mr. Watson, how are you doing today?
+The weather is awsome. The gardenis green.
+We should go out for a walk."""
+
+
+#Tokenize the sentences
+print (sent_tokenize(dataset)) for i in sent_tokenize(dataset): print(i)
+
+[' Hello Mr. Watson, how are you doing today?', 'The weather is awsome.', 'The garde Hello Mr. Watson, how are you doing today?
+The weather is awsome.
+The gardenis green.
+We should go out for a walk.
+
+
+#Tokenize the word
+print (word_tokenize(dataset)) 
+for i in word_tokenize(dataset):
+	print(i)
+
+['Hello', 'Mr.', 'Watson', ',', 'how', 'are', 'you', 'doing', 'today', '?', 'The', ' Hello
+Mr.
+ 
+Watson
+,
+how are you
+doing today
+?
+The
+weather is
+awsome
+.
+The
+gardenis green
+.
+We
+should go
+out
+for a
+walk
+.
+
+
+from nltk.tokenize import word_tokenize
+print("word_tokenize",word_tokenize(dataset))
+
+okenize ['Hello', 'Mr.', 'Watson', ',', 'how', 'are', 'you', 'doing', 'today', '?', '
+
+
+from nltk.tokenize import TreebankWordTokenizer
+#tokenizers work by separating the words using punctuation and spaces. tokenizer=TreebankWordTokenizer()
+print("TreebankWordTokenizer",tokenizer.tokenize(dataset))
+
+TreebankWordTokenizer ['Hello', 'Mr.', 'Watson', ',', 'how', 'are', 'you', 'doing',
+
+
+from nltk.tokenize import word_tokenize text="""हैलो िम™र वॉटसन, आज आप कै से ह 
+मौसम सुहाना है बगीचा हरा है
+हम बाहर घूमने जाना चािहए"""
+print("Word_tokenize",word_tokenize(text))
+
+Word_tokenize ['हैलो', 'िम™र', 'वॉटसन', ',', 'आज', 'आप', 'कै से', 'ह ', 'मौसम', 'सुहाना
+
+
+from nltk.tokenize import sent_tokenize
+print("Sentence_tokenize",sent_tokenize(text))
+ 
+Sentence_tokenize ['हैलो िम™र वॉटसन, आज आप कै से ह \n	मौसम सुहाना  है\n
+
+
+from nltk.tokenize import WordPunctTokenizer #separates the punctuation from the word.
+tokenizer=WordPunctTokenizer()
+print("WordPuntTokenizer",tokenizer.tokenize(text))
+
+WordPuntTokenizer ['ह', '◌ै ', 'ल', '◌ो', 'म', 'ि◌', 'स', '◌् ', 'टर', 'व', '◌ॉ', 'टसन', ',
+
+
+from nltk.tokenize import TreebankWordTokenizer
+# tokenizers work by sparating the words using punctuation and spaces. 
+tokenize=TreebankWordTokenizer()
+print("TreebankWordTokenizer",tokenize.tokenize(text))
+
+TreebankWordTokenizer ['हैलो', 'िम™र', 'वॉटसन', ',', 'आज', 'आप', 'कै से', 'ह ', 'मौसम
+
+Practical No 2
+
+Write a Program to identify Stopwords in a given sentence in English.
+
+
+!pip install nltk
+
+Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/ Requirement already satisfied: nltk in /usr/local/lib/python3.8/dist-packages (3.7) Requirement already satisfied: click in /usr/local/lib/python3.8/dist-packages (from Requirement already satisfied: tqdm in /usr/local/lib/python3.8/dist-packages (from Requirement already satisfied: regex>=2021.8.3 in /usr/local/lib/python3.8/dist-pack Requirement already satisfied: joblib in /usr/local/lib/python3.8/dist-packages (fro
+
+
+import nltk
+
+
+nltk.download("all")
+
+[nltk_data]	| Downloading package omw to /root/nltk_data... [nltk_data]	|	Package omw is already up-to-date!
+[nltk_data]	| Downloading package omw-1.4 to /root/nltk_data... [nltk_data]	|	Package omw-1.4 is already up-to-date!
+[nltk_data]	| Downloading package opinion_lexicon to [nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package opinion_lexicon is already up-to-date! [nltk_data]	| Downloading package panlex_swadesh to
+[nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package panlex_swadesh is already up-to-date!
+[nltk_data]	| Downloading package paradigms to /root/nltk_data... [nltk_data]	|	Package paradigms is already up-to-date!
+[nltk_data]	| Downloading package pe08 to /root/nltk_data...
+[nltk_data]	|	Package pe08 is already up-to-date!
+ 
+[nltk_data] | Downloading package perluniprops to [nltk_data] | /root/nltk_data...
+[nltk_data] | Package perluniprops is already up-to-date! [nltk_data] | Downloading package pil to /root/nltk_data... [nltk_data] | Package pil is already up-to-date!
+[nltk_data]	| Downloading package pl196x to /root/nltk_data... [nltk_data]	|	Package pl196x is already up-to-date!
+[nltk_data]	| Downloading package porter_test to /root/nltk_data...
+[nltk_data]	|	Package porter_test is already up-to-date!
+[nltk_data]	| Downloading package ppattach to /root/nltk_data... [nltk_data]	|	Package ppattach is already up-to-date!
+[nltk_data]	| Downloading package problem_reports to [nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package problem_reports is already up-to-date! [nltk_data]	| Downloading package product_reviews_1 to
+[nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package product_reviews_1 is already up-to-date! [nltk_data]	| Downloading package product_reviews_2 to
+[nltk_data]	|	/root/nltk_data...
+[nltk_data] | Package product_reviews_2 is already up-to-date! [nltk_data] | Downloading package propbank to /root/nltk_data... [nltk_data] | Package propbank is already up-to-date!
+[nltk_data]	| Downloading package pros_cons to /root/nltk_data... [nltk_data]	|	Package pros_cons is already up-to-date!
+[nltk_data]	| Downloading package ptb to /root/nltk_data... [nltk_data]	|	Package ptb is already up-to-date!
+[nltk_data]	| Downloading package punkt to /root/nltk_data...
+[nltk_data]	|	Package punkt is already up-to-date!
+[nltk_data]	| Downloading package qc to /root/nltk_data... [nltk_data]	|	Package qc is already up-to-date!
+[nltk_data]	| Downloading package reuters to /root/nltk_data... [nltk_data]	|	Package reuters is already up-to-date!
+[nltk_data]	| Downloading package rslp to /root/nltk_data...
+[nltk_data]	|	Package rslp is already up-to-date!
+[nltk_data]	| Downloading package rte to /root/nltk_data... [nltk_data]	|	Package rte is already up-to-date!
+[nltk_data]	| Downloading package sample_grammars to [nltk_data]	|	/root/nltk_data...
+[nltk_data] | Package sample_grammars is already up-to-date! [nltk_data] | Downloading package semcor to /root/nltk_data... [nltk_data] | Package semcor is already up-to-date!
+[nltk_data] | Downloading package senseval to /root/nltk_data... [nltk_data] | Package senseval is already up-to-date!
+[nltk_data]    | Downloading package sentence_polarity to
+
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+
+
+dataset="""English is a very important asset when seeking employment in Guatemala. Help ed
+
+
+stop_words=set(stopwords.words('english')) print(stop_words)
+
+{"you'll", 'theirs', "don't", 'your', 'just', 'was', 'from', 'very', 'me', 'when', "
+
+ 
+print("Total count of Stopwords:",len(dataset))
+
+Total count of Stopwords: 256
+
+words=word_tokenize(dataset) print(words)
+
+['English', 'is', 'a', 'very', 'important', 'asset', 'when', 'seeking', 'employment'
+
+
+print("Total words:",len(words))
+
+Total words: 49
+
+filtered_sentence=[] for w in words:
+if w not in stop_words:
+filtered_sentence.append(w)
+
+
+print(filtered_sentence) print()
+print("After removing stopwords",len(filtered_sentence))
+
+
+['English', 'important', 'asset', 'seeking', 'employment', 'Guatemala', '.', 'Help',
+
+After removing stopwords 35
+
+
+Practical No 3
+
+Write a program to perform Stemming and Lemmatization for English Text.
+
+
+import nltk
+
+
+nltk.download("all")
+[nltk_data]	| Downloading package swadesh to /root/nltk_data... [nltk_data]	|	Package swadesh is already up-to-date!
+[nltk_data]	| Downloading package switchboard to /root/nltk_data... [nltk_data]	|	Package switchboard is already up-to-date!
+[nltk_data]	| Downloading package tagsets to /root/nltk_data...
+[nltk_data]	|	Package tagsets is already up-to-date!
+[nltk_data]	| Downloading package timit to /root/nltk_data... [nltk_data]	|	Package timit is already up-to-date!
+[nltk_data]	| Downloading package toolbox to /root/nltk_data... [nltk_data]	|	Package toolbox is already up-to-date!
+[nltk_data]	| Downloading package treebank to /root/nltk_data...
+[nltk_data]	|	Package treebank is already up-to-date! [nltk_data]	| Downloading package twitter_samples to
+ 
+[nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package twitter_samples is already up-to-date! [nltk_data]	| Downloading package udhr to /root/nltk_data...
+[nltk_data]	|	Package udhr is already up-to-date!
+[nltk_data]	| Downloading package udhr2 to /root/nltk_data... [nltk_data]	|	Package udhr2 is already up-to-date!
+[nltk_data]	| Downloading package unicode_samples to [nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package unicode_samples is already up-to-date!
+[nltk_data]	| Downloading package universal_tagset to [nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package universal_tagset is already up-to-date!
+Downloading package universal_treebanks_v20 to
+/root/nltk_data...
+Package universal_treebanks_v20 is already up-to- date!
+Downloading package vader_lexicon to
+/root/nltk_data...
+[nltk_data]	|	Package vader_lexicon is already up-to-date!
+[nltk_data]	| Downloading package verbnet to /root/nltk_data... [nltk_data]	|	Package verbnet is already up-to-date!
+[nltk_data]	| Downloading package verbnet3 to /root/nltk_data... [nltk_data]	|	Package verbnet3 is already up-to-date!
+[nltk_data]	| Downloading package webtext to /root/nltk_data... [nltk_data]	|	Package webtext is already up-to-date!
+[nltk_data]	| Downloading package wmt15_eval to /root/nltk_data...
+[nltk_data]	|	Package wmt15_eval is already up-to-date! [nltk_data]	| Downloading package word2vec_sample to
+[nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package word2vec_sample is already up-to-date! [nltk_data]	| Downloading package wordnet to /root/nltk_data... [nltk_data]	|	Package wordnet is already up-to-date!
+[nltk_data]	| Downloading package wordnet2021 to /root/nltk_data... [nltk_data]	|	Package wordnet2021 is already up-to-date!
+[nltk_data]	| Downloading package wordnet31 to /root/nltk_data...
+[nltk_data]	|	Package wordnet31 is already up-to-date!
+[nltk_data]	| Downloading package wordnet_ic to /root/nltk_data... [nltk_data]	|	Package wordnet_ic is already up-to-date!
+[nltk_data]	| Downloading package words to /root/nltk_data... [nltk_data]	|	Package words is already up-to-date!
+[nltk_data]	| Downloading package ycoe to /root/nltk_data...
+[nltk_data]	|	Package ycoe is already up-to-date! [nltk_data]	|
+[nltk_data] Done downloading collection all
+True
+
+
+# import these modules
+from nltk.stem import PorterStemmer
+from nltk.tokenize import word_tokenize 
+ps = PorterStemmer()
+
+
+# choose some words to be stemmed
+words = ["program", "programs", "programmer", "programming", "programmers"]
+ 
+for w in words:
+print(w, " : ", ps.stem(w))
+
+program : program programs : program
+programmer : programm programming : program programmers : programm
+# choose some words to be stemmed
+sentence="Programmers program with programming languages" words = word_tokenize(sentence)
+
+for w in words:
+	print(w, " : ", ps.stem(w))
+
+Programmers : programm program : program
+with : with
+programming : program languages : languag
+
+
+from nltk.stem import PorterStemmer
+e_words= ["wait", "waiting", "waited", "waits"] ps =PorterStemmer()
+for w in e_words:
+	rootWord=ps.stem(w) print(rootWord)
+
+wait wait wait wait
+
+
+from nltk.stem import PorterStemmer
+from nltk.tokenize import sent_tokenize, word_tokenize
+
+sentence="friends come in all sizes and shapes,The boys were throwing baseballs back and g words = word_tokenize(sentence)
+ps = PorterStemmer() 
+for w in words:
+	rootWord=ps.stem(w) 
+	print(w,rootWord)
+
+
+friends friend come come
+in in
+all all
+sizes size and and
+shapes shape
+, ,
+The the boys boy
+were were
+ 
+throwing throw
+baseballs basebal back back
+and and
+girls girl were were
+drawing draw
+. .
+
+#create an object of class PorterStemmer from nltk.stem import PorterStemmer
+from nltk.stem import LancasterStemmer porter = PorterStemmer()
+lancaster=LancasterStemmer()
+
+#provide a word to be stemmed print("Porter Stemmer")
+print(porter.stem("cats"))
+print(porter.stem("trouble")) print(porter.stem("troubling")) print(porter.stem("troubled")) print()
+
+print("Lancaster Stemmer")
+print(lancaster.stem("cats"))
+print(lancaster.stem("trouble")) print(lancaster.stem("troubling")) print(lancaster.stem("troubled"))
+
+Porter Stemmer cat
+troubl
+troubl troubl
+
+Lancaster Stemmer cat
+troubl troubl troubl
+
+
+#A list of words to be stemmed
+
+word_list = ["friend", "friendship", "friends", "friendships","stabil","destabilize","misu print("{0:20}{1:20}{2:20}".format("Word","Porter Stemmer","lancaster Stemmer"))
+for word in word_list:
+	print("{0:20}{1:20}{2:20}".format(word,porter.stem(word),lancaster.stem(word)))
+
+Word	Porter Stemmer	lancaster Stemmer
+friend	friend	friend
+friendship	friendship	friend
+friends	friend	friend
+friendships	friendship	friend
+stabil	stabil	stabl
+destabilize	destabil	dest
+misunderstanding	misunderstand	misunderstand
+ 
+
+railroad	railroad	railroad
+moonlight	moonlight	moonlight
+football	footbal	footbal
+
+
+
+sentence="Pythoners are very intelligent and work very pythonly and now they are pythoning porter.stem(sentence)
+
+'pythoners are very intelligent and work very pythonly and now they are pythoning th eir way to sucess.'
+
+#stemming import nltk
+from nltk.stem.porter import PorterStemmer porter_stemmer = PorterStemmer()
+text = "studies studying cries cry"
+tokenization = nltk.word_tokenize(text) for w in tokenization:
+print("Stemming for {} is {}".format(w,porter_stemmer.stem(w)))
+
+
+Stemming for studies is studi Stemming for studying is studi Stemming for cries is cri
+Stemming for cry is cri
+
+# Lemmatization import nltk
+from nltk.stem import WordNetLemmatizer wordnet_lemmatizer = WordNetLemmatizer() text = "studies studying cries cry"
+tokenization = nltk.word_tokenize(text) for w in tokenization:
+print("Lemma for {} is {}".format(w, wordnet_lemmatizer.lemmatize(w)))
+
+Lemma for studies is study
+Lemma for studying is studying Lemma for cries is cry
+Lemma for cry is cry
+
+
+
+Practical No 4
+
+Q1)Write a program to segregate Part Of Speech (POS Tagging) for english Text.
+
+
+!pip install nltk
+
+Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/ Requirement already satisfied: nltk in /usr/local/lib/python3.8/dist-packages (3.7) Requirement already satisfied: joblib in /usr/local/lib/python3.8/dist-packages (fro Requirement already satisfied: click in /usr/local/lib/python3.8/dist-packages (from Requirement already satisfied: regex>=2021.8.3 in /usr/local/lib/python3.8/dist-pack Requirement already satisfied: tqdm in /usr/local/lib/python3.8/dist-packages (from
+ 
+
+import nltk
+
+
+nltk.download('all')
+[nltk_data]	|	Package senseval is already up-to-date! [nltk_data]	| Downloading package sentence_polarity to [nltk_data]	|		/root/nltk_data...
+[nltk_data]	|	Package sentence_polarity is already up-to-date! [nltk_data]	| Downloading package sentiwordnet to
+[nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package sentiwordnet is already up-to-date!
+[nltk_data]	| Downloading package shakespeare to /root/nltk_data... [nltk_data]	|	Package shakespeare is already up-to-date!
+[nltk_data]	| Downloading package sinica_treebank to [nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package sinica_treebank is already up-to-date!
+[nltk_data]	| Downloading package smultron to /root/nltk_data... [nltk_data]	|	Package smultron is already up-to-date!
+[nltk_data]	| Downloading package snowball_data to
+[nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package snowball_data is already up-to-date! [nltk_data]	| Downloading package spanish_grammars to
+[nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package spanish_grammars is already up-to-date!
+[nltk_data]	| Downloading package state_union to /root/nltk_data... [nltk_data]	|	Package state_union is already up-to-date!
+[nltk_data]	| Downloading package stopwords to /root/nltk_data...
+[nltk_data]	|	Package stopwords is already up-to-date! [nltk_data]	| Downloading package subjectivity to
+[nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package subjectivity is already up-to-date!
+[nltk_data]	| Downloading package swadesh to /root/nltk_data... [nltk_data]	|	Package swadesh is already up-to-date!
+[nltk_data]	| Downloading package switchboard to /root/nltk_data... [nltk_data]	|	Package switchboard is already up-to-date!
+[nltk_data]	| Downloading package tagsets to /root/nltk_data...
+[nltk_data]	|	Package tagsets is already up-to-date!
+[nltk_data]	| Downloading package timit to /root/nltk_data... [nltk_data]	|	Package timit is already up-to-date!
+[nltk_data]	| Downloading package toolbox to /root/nltk_data... [nltk_data]	|	Package toolbox is already up-to-date!
+[nltk_data]	| Downloading package treebank to /root/nltk_data... [nltk_data]	|	Package treebank is already up-to-date!
+[nltk_data]	| Downloading package twitter_samples to
+[nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package twitter_samples is already up-to-date! [nltk_data]	| Downloading package udhr to /root/nltk_data...
+[nltk_data]	|	Package udhr is already up-to-date!
+[nltk_data]	| Downloading package udhr2 to /root/nltk_data... [nltk_data]	|	Package udhr2 is already up-to-date!
+[nltk_data]	| Downloading package unicode_samples to [nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package unicode_samples is already up-to-date! [nltk_data]	| Downloading package universal_tagset to
+[nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package universal_tagset is already up-to-date! [nltk_data]	| Downloading package universal_treebanks_v20 to
+ 
+[nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package universal_treebanks_v20 is already up-to- [nltk_data]	|		date!
+[nltk_data]	| Downloading package vader_lexicon to [nltk_data]	|	/root/nltk_data...
+
+
+import nltk
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger') nltk.download('tagsets')
+
+[nltk_data] Downloading package punkt to /root/nltk_data... [nltk_data]	Package punkt is already up-to-date!
+[nltk_data] Downloading package averaged_perceptron_tagger to
+[nltk_data]	/root/nltk_data...
+[nltk_data]	Package averaged_perceptron_tagger is already up-to- [nltk_data]		date!
+[nltk_data] Downloading package tagsets to /root/nltk_data... [nltk_data]	Package tagsets is already up-to-date!
+True
+
+
+import nltk
+from nltk.tokenize import word_tokenize 
+from nltk.tag import pos_tag
+
+
+dataset="""Taj Mahal is one of the world's most celebrated structures in the world.It is a
+
+
+# Tokenize the data
+new_data = word_tokenize(dataset) new_data
+
+['Taj',
+'Mahal',
+'is',
+'one',
+'of',
+'the',
+'world',
+"'s",
+'most',
+'celebrated', 'structures', 'in',
+'the',
+'world.It',
+'is',
+'a',
+'stunning', 'symbol',
+'of',
+'Indian',
+'rich',
+'history']
+ 
+# Apply the POS Tagging pos_tag(new_data)
+
+[('Taj', 'NNP'),
+('Mahal', 'NNP'),
+('is', 'VBZ'),
+('one', 'CD'),
+('of', 'IN'),
+('the', 'DT'),
+('world', 'NN'),
+("'s", 'POS'),
+('most', 'RBS'),
+('celebrated', 'JJ'),
+('structures', 'NNS'),
+('in', 'IN'),
+('the', 'DT'),
+('world.It', 'NN'),
+('is', 'VBZ'),
+('a', 'DT'),
+('stunning', 'JJ'),
+('symbol', 'NN'),
+('of', 'IN'),
+('Indian', 'JJ'),
+('rich', 'JJ'),
+('history', 'NN')]
+
+# Tag Set
+nltk.help.upenn_tagset()
+
+$: dollar
+$ -$ --$ A$ C$ HK$ M$ NZ$ S$ U.S.$ US$ '': closing quotation mark
+' ''
+(: opening parenthesis ( [ {
+): closing parenthesis
+) ] }
+,: comma
+,
+--: dash
+--
+.: sentence terminator
+. ! ?
+:: colon or ellipsis
+: ; ...
+CC: conjunction, coordinating
+& 'n and both but either et for less minus neither nor or plus so therefore times v. versus vs. whether yet
+CD: numeral, cardinal
+mid-1890 nine-thirty forty-two one-tenth ten million 0.5 one forty- seven 1987 twenty '79 zero two 78-degrees eighty-four IX '60s .025 fifteen 271,124 dozen quintillion DM2,000 ...
+DT: determiner
+all an another any both del each either every half la many much nary neither no some such that the them these this those
+EX: existential there there
+FW: foreign word
+gemeinschaft hund ich jeux habeas Haementeria Herr K'ang-si vous
+ 
+lutihaw alai je jour objets salutaris fille quibusdam pas trop Monte terram fiche oui corporis ...
+IN: preposition or conjunction, subordinating
+astride among uppon whether out inside pro despite on by throughout below within for towards near behind atop around if like until below next into if beside ...
+JJ: adjective or numeral, ordinal
+third ill-mannered pre-war regrettable oiled calamitous first separable ectoplasmic battery-powered participatory fourth still-to-be-named
+multilingual multi-disciplinary ...
+JJR: adjective, comparative
+bleaker braver breezier briefer brighter brisker broader bumper busier calmer cheaper choosier cleaner clearer closer colder commoner costlier cozier creamier crunchier cuter ...
+JJS: adjective, superlative
+calmest cheapest choicest classiest cleanest clearest closest commonest corniest costliest crassest creepiest crudest cutest darkest deadliest dearest deepest densest dinkiest ...
+LS: list item marker
+A A. B B. C C. D E F First G H I J K One SP-44001 SP-44002 SP-44005
+SP-44007 Second Third Three Two * a b c d first five four one six three two
+MD: modal auxiliary
+can cannot could couldn't dare may might must need ought shall should shouldn't will would
+NN: noun, common, singular or mass
+common-carrier cabbage knuckle-duster Casino afghan shed thermostat
+
+
+Practical No 5
+
+Write a program to perform Name Entity Recognition(NER) & Chunking on English Text.
+
+
+!pip install nltk import nltk
+nltk.download('all')
+[nltk_data]	|	Package swadesh is already up-to-date!
+[nltk_data]	| Downloading package switchboard to /root/nltk_data... [nltk_data]	|	Package switchboard is already up-to-date!
+[nltk_data]	| Downloading package tagsets to /root/nltk_data... [nltk_data]	|	Package tagsets is already up-to-date!
+[nltk_data]	| Downloading package timit to /root/nltk_data...
+[nltk_data]	|	Package timit is already up-to-date!
+[nltk_data]	| Downloading package toolbox to /root/nltk_data... [nltk_data]	|	Package toolbox is already up-to-date!
+[nltk_data]	| Downloading package treebank to /root/nltk_data... [nltk_data]	|	Package treebank is already up-to-date!
+[nltk_data]	| Downloading package twitter_samples to
+[nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package twitter_samples is already up-to-date! [nltk_data]	| Downloading package udhr to /root/nltk_data...
+[nltk_data]	|	Package udhr is already up-to-date!
+[nltk_data]	| Downloading package udhr2 to /root/nltk_data... [nltk_data]	|	Package udhr2 is already up-to-date!
+[nltk_data]	| Downloading package unicode_samples to [nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package unicode_samples is already up-to-date! [nltk data]	| Downloading package universal tagset to
+ 
+
+[nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package universal_tagset is already up-to-date! [nltk_data]	| Downloading package universal_treebanks_v20 to
+[nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package universal_treebanks_v20 is already up-to- [nltk_data]	|		date!
+[nltk_data]	| Downloading package vader_lexicon to [nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package vader_lexicon is already up-to-date!
+[nltk_data]	| Downloading package verbnet to /root/nltk_data... [nltk_data]	|	Package verbnet is already up-to-date!
+[nltk_data]	| Downloading package verbnet3 to /root/nltk_data...
+[nltk_data]	|	Package verbnet3 is already up-to-date!
+[nltk_data]	| Downloading package webtext to /root/nltk_data... [nltk_data]	|	Package webtext is already up-to-date!
+[nltk_data]	| Downloading package wmt15_eval to /root/nltk_data... [nltk_data]	|	Package wmt15_eval is already up-to-date!
+[nltk_data]	| Downloading package word2vec_sample to
+[nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package word2vec_sample is already up-to-date! [nltk_data]	| Downloading package wordnet to /root/nltk_data... [nltk_data]	|	Package wordnet is already up-to-date!
+[nltk_data]	| Downloading package wordnet2021 to /root/nltk_data... [nltk_data]	|	Package wordnet2021 is already up-to-date!
+[nltk_data]	| Downloading package wordnet31 to /root/nltk_data...
+[nltk_data]	|	Package wordnet31 is already up-to-date!
+[nltk_data]	| Downloading package wordnet_ic to /root/nltk_data... [nltk_data]	|	Package wordnet_ic is already up-to-date!
+[nltk_data]	| Downloading package words to /root/nltk_data... [nltk_data]	|	Package words is already up-to-date!
+[nltk_data]	| Downloading package ycoe to /root/nltk_data... [nltk_data]	|	Package ycoe is already up-to-date!
+[nltk_data]	|
+[nltk_data] Done downloading collection all True
+
+
+
+from nltk.tokenize import word_tokenize 
+from nltk.tag import pos_tag
+from nltk.chunk import ne_chunk
+
+
+dataset="""Abraham Lincoln was an American Statesman and Lawyer who served as the 16th Pre
+
+
+dataset_tag= pos_tag(word_tokenize(dataset)) 
+dataset_tag
+
+[('Abraham', 'NNP'),
+('Lincoln', 'NNP'),
+('was', 'VBD'),
+('an', 'DT'),
+('American', 'JJ'),
+('Statesman', 'NNP'),
+('and', 'CC'),
+('Lawyer', 'NNP'),
+('who', 'WP'),
+('served', 'VBD'),
+ 
+('as', 'IN'),
+('the', 'DT'),
+('16th', 'CD'),
+('President', 'NNP'),
+('of', 'IN'),
+('the', 'DT'),
+('United', 'NNP'),
+('States', 'NNPS')]
+
+
+
+#Apply NER with ne_chunk
+data_ner=ne_chunk(dataset_tag) 
+print(data_ner)
+
+(S
+(PERSON Abraham/NNP) (PERSON Lincoln/NNP) was/VBD
+an/DT
+(ORGANIZATION American/JJ)
+Statesman/NNP and/CC
+Lawyer/NNP who/WP
+served/VBD as/IN
+the/DT
+16th/CD
+President/NNP of/IN
+the/DT
+(GPE United/NNP States/NNPS))
+
+
+Chunking
+
+import nltk
+from nltk.tokenize import word_tokenize from nltk.tag import pos_tag
+from nltk.chunk import RegexpParser
+
+
+dataset="""Taj Mahal is one of the world's most celebrated structures in the world. It is
+
+
+#Tokenize the data
+new_data=word_tokenize(dataset) print(new_data)
+
+['Taj', 'Mahal', 'is', 'one', 'of', 'the', 'world', "'s", 'most', 'celebrated', 'str
+
+
+#Apply the POS tagging
+postagging=pos_tag(new_data) 
+print(postagging)
+ 
+
+[('Taj', 'NNP'), ('Mahal', 'NNP'), ('is', 'VBZ'), ('one', 'CD'), ('of', 'IN'), ('the
+
+
+#defing sequence of chunk
+sequence_chunk=""" chunk: {<NNPS>+}
+{<NNP>+}
+{<NN>+}"""
+
+
+#Creating object with regular expression chunk=RegexpParser(sequence_chunk)
+
+
+chunk_result=chunk.parse(postagging) 
+print(chunk_result)
+
+(S
+(chunk Taj/NNP Mahal/NNP) is/VBZ
+one/CD of/IN the/DT
+(chunk world/NN) 's/POS
+most/RBS
+celebrated/JJ structures/NNS in/IN
+the/DT
+(chunk world/NN)
+./.
+It/PRP is/VBZ a/DT
+stunning/JJ
+(chunk symbol/NN) of/IN
+Indian/JJ
+rich/JJ
+(chunk history/NN)
+./.)
+
+
+
+Practical No 6
+
+Write a program to perform WordNet & also check Word Similarity on English Text.
+
+
+!pip install nltk import nltk
+nltk.download('all')
+[nltk_data]	|	Package swadesh is already up-to-date!
+[nltk_data]	| Downloading package switchboard to /root/nltk_data... [nltk_data]	|	Package switchboard is already up-to-date!
+[nltk_data]	| Downloading package tagsets to /root/nltk_data...
+[nltk_data]	|	Package tagsets is already up-to-date!
+ 
+[nltk_data]	| Downloading package timit to /root/nltk_data... [nltk_data]	|	Package timit is already up-to-date!
+[nltk_data]	| Downloading package toolbox to /root/nltk_data... [nltk_data]	|	Package toolbox is already up-to-date!
+[nltk_data]	| Downloading package treebank to /root/nltk_data...
+[nltk_data]	|	Package treebank is already up-to-date! [nltk_data]	| Downloading package twitter_samples to
+[nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package twitter_samples is already up-to-date! [nltk_data]	| Downloading package udhr to /root/nltk_data...
+[nltk_data]	|	Package udhr is already up-to-date!
+[nltk_data]	| Downloading package udhr2 to /root/nltk_data... [nltk_data]	|	Package udhr2 is already up-to-date!
+[nltk_data]	| Downloading package unicode_samples to
+/root/nltk_data...
+Package unicode_samples is already up-to-date!
+Downloading package universal_tagset to
+/root/nltk_data...
+Package universal_tagset is already up-to-date!
+Downloading package universal_treebanks_v20 to
+/root/nltk_data...
+Package universal_treebanks_v20 is already up-to-
+[nltk_data]	|	date!
+[nltk_data]	| Downloading package vader_lexicon to [nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package vader_lexicon is already up-to-date!
+[nltk_data]	| Downloading package verbnet to /root/nltk_data... [nltk_data]	|	Package verbnet is already up-to-date!
+[nltk_data]	| Downloading package verbnet3 to /root/nltk_data... [nltk_data]	|	Package verbnet3 is already up-to-date!
+[nltk_data]	| Downloading package webtext to /root/nltk_data...
+[nltk_data]	|	Package webtext is already up-to-date!
+[nltk_data]	| Downloading package wmt15_eval to /root/nltk_data... [nltk_data]	|	Package wmt15_eval is already up-to-date!
+[nltk_data]	| Downloading package word2vec_sample to [nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package word2vec_sample is already up-to-date!
+[nltk_data]	| Downloading package wordnet to /root/nltk_data... [nltk_data]	|	Package wordnet is already up-to-date!
+[nltk_data]	| Downloading package wordnet2021 to /root/nltk_data...
+[nltk_data]	|	Package wordnet2021 is already up-to-date!
+[nltk_data]	| Downloading package wordnet31 to /root/nltk_data... [nltk_data]	|	Package wordnet31 is already up-to-date!
+[nltk_data]	| Downloading package wordnet_ic to /root/nltk_data... [nltk_data]	|	Package wordnet_ic is already up-to-date!
+[nltk_data]	| Downloading package words to /root/nltk_data... [nltk_data]	|	Package words is already up-to-date!
+[nltk_data]	| Downloading package ycoe to /root/nltk_data...
+[nltk_data]	|	Package ycoe is already up-to-date! [nltk_data]	|
+[nltk_data] Done downloading collection all
+True
+
+
+
+nltk.download('wordnet')
+
+[nltk_data] Downloading package wordnet to /root/nltk_data... [nltk_data]	Package wordnet is already up-to-date!
+True
+ 
+
+
+from nltk.corpus import wordnet
+
+
+syns=wordnet.synsets("program") 
+print(syns)
+print(syns[0])
+
+[Synset('plan.n.01'), Synset('program.n.02'), Synset('broadcast.n.02'), Synset('plat Synset('plan.n.01')
+
+print(syns[0].lemmas())
+print(syns[0].lemmas()[0].name())
+
+[Lemma('plan.n.01.plan'), Lemma('plan.n.01.program'), Lemma('plan.n.01.programme')] plan
+
+
+# to find the definiton
+print(syns[0].definition())
+
+a series of steps to be carried out or goals to be accomplished
+
+
+# to get an example
+print(syns[0].examples())
+
+['they drew up a six-step plan', 'they discussed plans for a new bond issue']
+
+
+from nltk.corpus import wordnet antonyms = []
+#defining the function to find Antonyms 
+def TofindAntonyms(x):
+	for syn in wordnet.synsets(x):
+		for lm in syn.lemmas(): 
+			if lm.antonyms():
+				antonyms.append(lm.antonyms()[0].name()) #adding into antonyms 
+	return antonyms
+print(set(TofindAntonyms("bright")))
+
+{'dull', 'dimmed'}
+
+
+print(set(TofindAntonyms("inactive")))
+
+{'dull', 'active', 'dimmed', 'operational'}
+
+
+print(set(TofindAntonyms("good")))
+
+{'active', 'badness', 'evilness', 'bad', 'dull', 'operational', 'evil', 'ill', 'dimm
+
+ 
+synonyms=[] 
+antonyms=[]
+for syn in wordnet.synsets("good"): 
+	for l in syn.lemmas():
+		synonyms.append(l.name()) 
+		if l.antonyms():
+		antonyms.append(l.antonyms()[0].name()) 
+	print("Synonyms:",(set(synonyms)))
+	print("Antonyms:",(set(antonyms)))
+
+
+Synonyms: {'honorable', 'adept', 'just', 'dear', 'well', 'in_force', 'trade_good', ' Antonyms: {'bad', 'evil', 'evilness', 'badness'}
+
+
+Word Similarity
+
+car=wordnet.synset('car.n.01')
+automobile=wordnet.synset('automobile.n.01')
+
+
+print("Similarity between car and automobile",car.path_similarity(automobile)) Similarity between car and automobile 1.0
+
+Wu-Palmer Similarity
+
+It calculates relatedness by considering the depths of the two synsets in the WordNet taxonomies, along with the depth of the LCS (Least Common Subsumer).The score can be 0 < score <= 1. The score can never be zero because the depth of the LCS is never zero (the depth of the root of taxonomy is one). It calculates the similarity based on how similar the word senses are and where the Synsets occur relative to each other in the hypernym tree
+
+from nltk.corpus import wordnet as wn
+
+
+w1=wordnet.synset('run.v.01')# v here denotes the tag verb w2= wordnet.synset('sprint.v.01')
+print(w1.wup_similarity(w2)) 0.8571428571428571
+
+jump=wn.synset('jump.v.01') leap=wn.synset('leap.v.01') ship =wn.synset('ship.n.01') boat=wn.synset('boat.n.01')
+sprint=wn.synset('sprint.v.01')
+
+
+print ("Similarity between jump and leap ",jump.wup_similarity(leap))
+ 
+
+Similarity between jump and leap 1.0
+
+
+
+print ("Similarity between run and sprint ",jump.wup_similarity(sprint))
+
+Similarity between run and sprint 0.25
+
+
+print ("Similarity between ship and boat ",ship.wup_similarity(boat))
+
+Similarity between ship and boat 0.9090909090909091
+
+
+print("Similarity between car and automobile",car.wup_similarity(automobile)) print ("Similarity between ship and boat ",ship.wup_similarity(boat))
+print ("Similarity between run and sprint ",jump.wup_similarity(sprint)) print ("Similarity between jump and leap ",jump.wup_similarity(leap))
+
+Similarity between car and automobile 1.0
+Similarity between ship and boat 0.9090909090909091 Similarity between run and sprint 0.25
+Similarity between jump and leap 1.0
+
+
+Practical No -7
+
+Write a program to implement word cloud of English Text.
+
+
+from wordcloud import WordCloud import matplotlib.pyplot as plt
+
+
+import matplotlib.pyplot as pPlot
+from wordcloud import WordCloud, STOPWORDS 
+import numpy as npy
+from PIL import Image
+dataset = open("/content/movie_list.txt", "r").read() 
+dataset = dataset.upper()
+
+
+maskArray = npy.array(Image.open("/content/video-300x300.jpg"))
+cloud = WordCloud(background_color = "#000012", min_font_size=5, colormap='Blues',
+max_font_size=70,font_path='/content/LEMONMILK-Medium.otf',max_words = 2000, width=1400,he collocations=True, mask = maskArray, stopwords = set(STOPWORDS)).generate(dataset)
+
+
+# plot the WordCloud image
+plt.figure(figsize = (6, 10), facecolor = None) 
+plt.imshow(cloud)
+plt.axis("off")
+ 
+
+(-0.5, 299.5, 299.5, -0.5)
+ 
+
+
+
+
+
+
+
+
+
+
+
+Practical No 8
+Write a program to process Text Summarization.
+
+
+!pip install nltk import nltk
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger') 
+nltk.download('maxent_ne_chunker')
+nltk.download('words')
+
+Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/ Requirement already satisfied: nltk in /usr/local/lib/python3.8/dist-packages (3.7) Requirement already satisfied: regex>=2021.8.3 in /usr/local/lib/python3.8/dist-pack Requirement already satisfied: click in /usr/local/lib/python3.8/dist-packages (from Requirement already satisfied: tqdm in /usr/local/lib/python3.8/dist-packages (from Requirement already satisfied: joblib in /usr/local/lib/python3.8/dist-packages (fro [nltk_data] Downloading package punkt to /root/nltk_data...
+[nltk_data]	Package punkt is already up-to-date!
+[nltk_data] Downloading package averaged_perceptron_tagger to [nltk_data]	/root/nltk_data...
+[nltk_data]	Package averaged_perceptron_tagger is already up-to- [nltk_data]		date!
+[nltk_data] Downloading package maxent_ne_chunker to
+[nltk_data]	/root/nltk_data...
+[nltk_data]	Package maxent_ne_chunker is already up-to-date! [nltk_data] Downloading package words to /root/nltk_data...
+[nltk_data]	Package words is already up-to-date!
+True
+
+
+from nltk.tokenize import word_tokenize from nltk.tokenize import sent_tokenize
+
+
+dataset=open("/content/President_Speech.txt", encoding='cp1252').read()
+ 
+
+dataset
+
+'Less than one year has passed since I first stood at this podium, in this majestic chamber, to speak on behalf of the American people and to address their concerns, th eir hopes, and their dreams. That night, our new administration had already taken ve ry swift action. A new tide of optimism was already sweeping across our land. Each d ay since, we have gone forward with a clear vision and a righteous mission, to make America great again for all Americans.\n\nOver the last year, we have made incredibl e progress and achieved extraordinary success. We have faced challenges we expected
+
+def summarization(dataset):
+
+result = []
+for number, sentence in enumerate(sent_tokenize(dataset)): 
+	number_tokens = len(word_tokenize(sentence))
+	tagged = nltk.pos_tag(word_tokenize(sentence))
+	number_nouns= len([word for word, pos in tagged if pos in ["NN", "NNP"]]) 
+	ners=nltk.ne_chunk(nltk.pos_tag(word_tokenize(sentence)), binary=False) 
+	number_ners=len([chunk for chunk in ners if hasattr(chunk,'label')])
+	score=(number_ners + number_nouns) / float(number_tokens) 
+	result.append((number, score, sentence))
+	return result
+
+
+summ = summarization(dataset) 
+summ
+
+[(0,
+0.125,
+'Less than one year has passed since I first stood at this podium, in this
+majestic chamber, to speak on behalf of the American people and to address their concerns, their hopes, and their dreams.')]
+
+
+for i in sorted(summ, key=lambda x: x[1], reverse=True): 
+print(i[2])
+
+Less than one year has passed since I first stood at this podium, in this majestic c
+
+
+
+
+
+
+
+
+
+
+Practical No - 9
+
+Write a program to implement Word2Vec on Wikipedia Articles and finding the similarity between the words.
+
+
+!pip install wikipedia
+
+Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/ Collecting wikipedia
+Downloading wikipedia-1.4.0.tar.gz (27 kB)
+Requirement already satisfied: beautifulsoup4 in /usr/local/lib/python3.8/dist-packa Requirement already satisfied: requests<3.0.0,>=2.0.0 in /usr/local/lib/python3.8/di Requirement already satisfied: certifi>=2017.4.17 in /usr/local/lib/python3.8/dist-p
+ 
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in /usr/local Requirement already satisfied: chardet<4,>=3.0.2 in /usr/local/lib/python3.8/dist-pa Requirement already satisfied: idna<3,>=2.5 in /usr/local/lib/python3.8/dist-package Building wheels for collected packages: wikipedia
+Building wheel for wikipedia (setup.py) ... done
+Created wheel for wikipedia: filename=wikipedia-1.4.0-py3-none-any.whl size=11695 Stored in directory: /root/.cache/pip/wheels/07/93/05/72c05349177dca2e0ba31a33ba4f
+Successfully built wikipedia
+Installing collected packages: wikipedia Successfully installed wikipedia-1.4.0
+
+
+!pip install gensim
+
+Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/ Requirement already satisfied: gensim in /usr/local/lib/python3.8/dist-packages (3.6 Requirement already satisfied: scipy>=0.18.1 in /usr/local/lib/python3.8/dist-packag Requirement already satisfied: six>=1.5.0 in /usr/local/lib/python3.8/dist-packages Requirement already satisfied: numpy>=1.11.3 in /usr/local/lib/python3.8/dist-packag Requirement already satisfied: smart-open>=1.2.1 in /usr/local/lib/python3.8/dist-pa
+
+
+!pip install nltk import nltk
+nltk.download("all")
+[nltk_data]	|	Package swadesh is already up-to-date!
+[nltk_data]	| Downloading package switchboard to /root/nltk_data... [nltk_data]	|	Package switchboard is already up-to-date!
+[nltk_data]	| Downloading package tagsets to /root/nltk_data... [nltk_data]	|	Package tagsets is already up-to-date!
+[nltk_data]	| Downloading package timit to /root/nltk_data...
+[nltk_data]	|	Package timit is already up-to-date!
+[nltk_data]	| Downloading package toolbox to /root/nltk_data... [nltk_data]	|	Package toolbox is already up-to-date!
+[nltk_data]	| Downloading package treebank to /root/nltk_data... [nltk_data]	|	Package treebank is already up-to-date!
+[nltk_data]	| Downloading package twitter_samples to
+[nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package twitter_samples is already up-to-date! [nltk_data]	| Downloading package udhr to /root/nltk_data...
+[nltk_data]	|	Package udhr is already up-to-date!
+[nltk_data]	| Downloading package udhr2 to /root/nltk_data... [nltk_data]	|	Package udhr2 is already up-to-date!
+[nltk_data]	| Downloading package unicode_samples to [nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package unicode_samples is already up-to-date! [nltk_data]	| Downloading package universal_tagset to
+[nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package universal_tagset is already up-to-date! [nltk_data]	| Downloading package universal_treebanks_v20 to
+[nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package universal_treebanks_v20 is already up-to- [nltk_data]	|		date!
+[nltk_data]	| Downloading package vader_lexicon to [nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package vader_lexicon is already up-to-date!
+[nltk_data]	| Downloading package verbnet to /root/nltk_data...
+ 
+[nltk_data]	|	Package verbnet is already up-to-date!
+[nltk_data]	| Downloading package verbnet3 to /root/nltk_data... [nltk_data]	|	Package verbnet3 is already up-to-date!
+[nltk_data]	| Downloading package webtext to /root/nltk_data... [nltk_data]	|	Package webtext is already up-to-date!
+[nltk_data]	| Downloading package wmt15_eval to /root/nltk_data... [nltk_data]	|	Package wmt15_eval is already up-to-date!
+[nltk_data]	| Downloading package word2vec_sample to [nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package word2vec_sample is already up-to-date!
+[nltk_data]	| Downloading package wordnet to /root/nltk_data... [nltk_data]	|	Package wordnet is already up-to-date!
+[nltk_data]	| Downloading package wordnet2021 to /root/nltk_data...
+[nltk_data]	|	Package wordnet2021 is already up-to-date!
+[nltk_data]	| Downloading package wordnet31 to /root/nltk_data... [nltk_data]	|	Package wordnet31 is already up-to-date!
+[nltk_data]	| Downloading package wordnet_ic to /root/nltk_data... [nltk_data]	|	Package wordnet_ic is already up-to-date!
+[nltk_data]	| Downloading package words to /root/nltk_data...
+[nltk_data]	|	Package words is already up-to-date!
+[nltk_data]	| Downloading package ycoe to /root/nltk_data... [nltk_data]	|	Package ycoe is already up-to-date!
+[nltk_data]	|
+[nltk_data] Done downloading collection all True
+
+
+
+from nltk.tokenize import sent_tokenize from nltk.tokenize import word_tokenize from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
+
+
+import string
+import warnings
+from gensim.models import Word2Vec
+warnings.filterwarnings(action="ignore", category = UserWarning, module="gensim")
+
+import wikipedia
+from wikipedia import search from wikipedia import page
+
+
+titles = search("Data Science") 
+wikipage = page(titles[0])
+wikipage.content
+wikipage.categories
+wikipedia.summary("Data Science", sentences = 1) 
+wikipedia.search("Data Science")
+
+['Data science', 'Data',
+'Data type',
+'Data (computer science)', 'Data analysis',
+'Master in Data Science', 'Big data',
+'Computer science',
+ 
+'Data structure', 'Fog Reveal']
+
+
+def preprocessing(text): 
+	result = []
+	sent = sent_tokenize(text) 
+	for sentence in sent:
+		words = word_tokenize(sentence)
+		tokens = [w for w in words if w.lower() not in string.punctuation] 
+		stopw = stopwords.words("english")
+		tokens = [token for token in tokens if token not in stopw] 
+		tokens = [word for word in tokens if len(word)>= 3]
+		lemma = WordNetLemmatizer()
+		tokens = [lemma.lemmatize(word) for word in tokens] 
+		result += [tokens]
+
+	return result
+text_p = preprocessing(wikipage.content) 
+text_p[0]
+
+
+['Data',
+'science',
+'interdisciplinary', 'field',
+'us',
+'scientific', 'method',
+'process',
+'algorithm', 'system',
+'extract',
+'extrapolate', 'knowledge',
+'insight',
+'noisy',
+'structured',
+'unstructured', 'data',
+'apply',
+'knowledge', 'data',
+'across',
+'broad',
+'range',
+'application', 'domain']
+
+
+min_count = 2
+size = 50
+window = 4
+
+wikimodel = Word2Vec(text_p, min_count = min_count, size = size, window = window)
+
+WARNING:gensim.models.base_any2vec:consider setting layer size to a multiple of 4 fo WARNING:gensim.models.base_any2vec:under 10 jobs per worker: consider setting a smal
+ 
+
+ 
+
+vocab = list(wikimodel.wv.vocab.keys()) 
+vocab[ :10]
+
+
+['Data',
+'science',
+'interdisciplinary', 'field',
+'us',
+'method', 'process',
+'algorithm',
+'system',
+'knowledge']
+
+
+wikimodel.wv.most_similar(positive = ["method", "process"], topn = 3) 
+print(wikimodel.wv.similarity("data", "interdisciplinary"))
+print(wikimodel.wv.similarity("data", "science")) 
+print(wikimodel.wv.similarity("data", "system"))
+
+
+0.18044798
+-0.08047985
+-0.10997558
+
+
+
+
+
+
+Practical No 10
+
+Write a program to Train a model for Movie Review Classification using NLP Techniques.
+
+
+!pip install nltk import nltk
+ 
+nltk.download('all')
+[nltk_data]	|	Package swadesh is already up-to-date!
+[nltk_data]	| Downloading package switchboard to /root/nltk_data... [nltk_data]	|	Package switchboard is already up-to-date!
+[nltk_data]	| Downloading package tagsets to /root/nltk_data...
+[nltk_data]	|	Package tagsets is already up-to-date!
+[nltk_data]	| Downloading package timit to /root/nltk_data... [nltk_data]	|	Package timit is already up-to-date!
+[nltk_data]	| Downloading package toolbox to /root/nltk_data... [nltk_data]	|	Package toolbox is already up-to-date!
+[nltk_data]	| Downloading package treebank to /root/nltk_data... [nltk_data]	|	Package treebank is already up-to-date!
+[nltk_data]	| Downloading package twitter_samples to
+[nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package twitter_samples is already up-to-date! [nltk_data]	| Downloading package udhr to /root/nltk_data...
+[nltk_data]	|	Package udhr is already up-to-date!
+[nltk_data]	| Downloading package udhr2 to /root/nltk_data... [nltk_data]	|	Package udhr2 is already up-to-date!
+[nltk_data]	| Downloading package unicode_samples to [nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package unicode_samples is already up-to-date! [nltk_data]	| Downloading package universal_tagset to
+[nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package universal_tagset is already up-to-date! [nltk_data]	| Downloading package universal_treebanks_v20 to
+[nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package universal_treebanks_v20 is already up-to- [nltk_data]	|		date!
+[nltk_data]	| Downloading package vader_lexicon to [nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package vader_lexicon is already up-to-date!
+[nltk_data]	| Downloading package verbnet to /root/nltk_data... [nltk_data]	|	Package verbnet is already up-to-date!
+[nltk_data]	| Downloading package verbnet3 to /root/nltk_data... [nltk_data]	|	Package verbnet3 is already up-to-date!
+[nltk_data]	| Downloading package webtext to /root/nltk_data...
+[nltk_data]	|	Package webtext is already up-to-date!
+[nltk_data]	| Downloading package wmt15_eval to /root/nltk_data... [nltk_data]	|	Package wmt15_eval is already up-to-date!
+[nltk_data]	| Downloading package word2vec_sample to [nltk_data]	|	/root/nltk_data...
+[nltk_data]	|	Package word2vec_sample is already up-to-date! [nltk_data]	| Downloading package wordnet to /root/nltk_data... [nltk_data]	|	Package wordnet is already up-to-date!
+[nltk_data]	| Downloading package wordnet2021 to /root/nltk_data... [nltk_data]	|	Package wordnet2021 is already up-to-date!
+[nltk_data]	| Downloading package wordnet31 to /root/nltk_data...
+[nltk_data]	|	Package wordnet31 is already up-to-date!
+[nltk_data]	| Downloading package wordnet_ic to /root/nltk_data... [nltk_data]	|	Package wordnet_ic is already up-to-date!
+[nltk_data]	| Downloading package words to /root/nltk_data... [nltk_data]	|	Package words is already up-to-date!
+[nltk_data]	| Downloading package ycoe to /root/nltk_data... [nltk_data]	|	Package ycoe is already up-to-date!
+[nltk_data]	|
+[nltk_data] Done downloading collection all True
+ 
+
+
+import random
+
+
+from nltk.corpus import movie_reviews
+
+
+documents = []
+
+for category in movie_reviews.categories():
+	for fileid in movie_reviews.fileids(category):
+		documents.append((list(movie_reviews.words(fileid)), category))
+
+
+
+random.shuffle(documents)
+
+
+print(documents[1])
+
+(['vegas', 'vacation', 'is', 'the', 'fourth', 'film', 'starring', 'chevy', 'chase',
+
+
+## Normalize the dataset ## all_words = []
+for w in movie_reviews.words():
+	all_words.append(w.lower())
+
+
+all_words = nltk.FreqDist(all_words) 
+print(all_words.most_common(15))
+print(all_words["love"])
+
+[(',', 77717), ('the', 76529), ('.', 65876), ('a', 38106), ('and', 35576), ('of', 34
+1119
+
+
+word_features = list(all_words.keys())[:3000]
+
+
+def find_features(document): 
+	words = set(document)
+	features = {}
+	for w in word_features:
+		features[w] = (w in words) return features
+
+
+print((find_features(movie_reviews.words('neg/cv000_29416.txt')))) 
+featuresets = [(find_features(rev), category) for (rev, category) in documents]
+
+{'plot': True, ':': True, 'two': True, 'teen': True, 'couples': True, 'go': True, 't
+
+ 
+training_set = featuresets[ :1900] testing_set = featuresets[1900: ]
+
+
+classifier = nltk.NaiveBayesClassifier.train(training_set)
+
+
+print("Accuracy:",
+(nltk.classify.accuracy(classifier, testing_set))*100)
+
+Accuracy: 87.0
+
+
+classifier.show_most_informative_features(15)
+
+Most	Informative Features
+schumacher	
+=	
+True	
+neg :	
+pos	
+=	
+11.7 :	
+1.0
+	sucks	=	True	neg :	pos	=	10.6 :	1.0
+	annual	=	True	pos :	neg	=	9.0 :	1.0
+	welles	=	True	neg :	pos	=	8.4 :	1.0
+	frances	=	True	pos :	neg	=	8.3 :	1.0
+	unimaginative	=	True	neg :	pos	=	7.7 :	1.0
+	atrocious	=	True	neg :	pos	=	7.0 :	1.0
+	mena	=	True	neg :	pos	=	7.0 :	1.0
+	shoddy	=	True	neg :	pos	=	7.0 :	1.0
+	silverstone	=	True	neg :	pos	=	7.0 :	1.0
+	suvari	=	True	neg :	pos	=	7.0 :	1.0
+	idiotic	=	True	neg :	pos	=	6.8 :	1.0
+	turkey	=	True	neg :	pos	=	6.6 :	1.0
+	regard	=	True	pos :	neg	=	6.6 :	1.0
+	cindy	=	True	neg :	pos	=	6.4 :	1.0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
